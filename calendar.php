@@ -17,7 +17,6 @@
         }
 
         table {
-            
             width: 500px;
             background: #eee;
         }
@@ -25,10 +24,8 @@
         table td {
             width: 80px;
             text-align: center;
-            padding: 15px 5px;
+            padding: 5px;
             border-radius: 50%;
-            /* border-style: none; */
-            /* border: 2px solid transparent; */
         }
 
         /* table td:hover {
@@ -54,15 +51,18 @@
         .today {
             background: #ffa5a5;
         }
-        .cr{
+
+        .cr {
             width: 50px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: pink;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cr:hover {
+            /* border: 1px solid #ccc; */
+            background: #ffe79be3;
         }
     </style>
 </head>
@@ -133,68 +133,59 @@
                     <?php echo date("F , Y", strtotime($firstDay)); ?>
                 </div>
             </div>
+            <div class="">
+                <table class="rounded-bottom shadow">
+                    <tr>
+                        <td style="color:#6ba6e6; font-weight: bold;">Sun</td>
+                        <td style="color:#6ba6e6; font-weight: bold;">Mon</td>
+                        <td style="color:#6ba6e6; font-weight: bold;">Tue</td>
+                        <td style="color:#6ba6e6; font-weight: bold;">Wed</td>
+                        <td style="color:#6ba6e6; font-weight: bold;">Thu</td>
+                        <td style="color:#6ba6e6; font-weight: bold;">Fri</td>
+                        <td style="color:#6ba6e6; font-weight: bold;">Sat</td>
+                    </tr>
+                    <?php
+                    $holiday = [
+                        '2-28'=> '和平紀念日',
+                        '10-10' => '雙十節',
+                        '10-30' => '萬聖節',
+                        '12-25' => '聖誕節'
+                    ];
 
-            <table class="rounded-bottom shadow">
-                <tr>
-                    <td style="color:#6ba6e6; font-weight: bold;">Sun</td>
-                    <td style="color:#6ba6e6; font-weight: bold;">Mon</td>
-                    <td style="color:#6ba6e6; font-weight: bold;">Tue</td>
-                    <td style="color:#6ba6e6; font-weight: bold;">Wed</td>
-                    <td style="color:#6ba6e6; font-weight: bold;">Thu</td>
-                    <td style="color:#6ba6e6; font-weight: bold;">Fri</td>
-                    <td style="color:#6ba6e6; font-weight: bold;">Sat</td>
-                </tr>
-                <?php
-                $holiday = [
-                    '5-15' => 'BIRTHDAY',
-                    '10-30' => '萬聖節',
-                    '12-25' => '萬聖節'
-                ];
-
-                for ($i = 0; $i < 6; $i++) {
-                    echo "<tr>";
-                    for ($j = 0; $j < 7; $j++) {
-                        if ($j == 0 || $j == 6) {
-                            echo "<td class='weekend'>";
-                        } else {
+                    for ($i = 0; $i < 6; $i++) {
+                        echo "<tr>";
+                        for ($j = 0; $j < 7; $j++) {
                             echo "<td>";
+                            echo "<div class='cr'>";
+                            if ($j == 0 || $j == 6) {
+                                echo "<div class='weekend'>";
+                            }
+                            $date = "";
+
+                            if ($j < $startDay && $i == 0) {
+                                echo  "&nbsp";
+                            } else if ((($i * 7) + ($j + 1) - $startDay) > $monthDay) {
+                                // echo  "&nbsp";
+                                break;
+                            } else {
+                                $date = (($i * 7) + ($j + 1) - $startDay);
+                            }
+                            echo  $date;
+
+                            if (!empty($holiday[$month . '-' . $date])) {
+                                echo "<br>" . $holiday[$month . '-' . $date];
+                            };
+                            // if ($date == date("d")) {
+                            //     echo "<div class='today'>" . date('d') . "</div>";  #adbdf9
+                            // }
+                            echo "</div>";
+                            echo "</td>";
                         }
-                        $date = "";
-
-                        if ($j < $startDay && $i == 0) {
-                            echo  "&nbsp";
-                        } else if ((($i * 7) + ($j + 1) - $startDay) > $monthDay) {
-                            // echo  "&nbsp";
-                            break;
-                        } else if ($date == date("d")) {
-                            echo "<div class='today'>" . date('d') . "</div>";
-                        } else {
-                            $date = (($i * 7) + ($j + 1) - $startDay);
-                        }
-                        echo "<div class='cr'>$date</div>";
-
-                        if (!empty($holiday[$month . '-' . $date])) {
-                            echo $holiday[$month . '-' . $date];
-                        };
-
-
-
-                        
-                        // else {
-                        //     echo  "<a href='#'>";
-                        //     echo ($i * 7) + ($j + 1) - $startDay;
-                        //     echo  "</a>";
-                        // }
-                        echo "</td>";
+                        echo "</tr>";
                     }
-                    echo "</tr>";
-                }
-
-                // if (($i * 7) + ($j + 1) - $startDay == date("d")){
-                // echo "<small class='m-0 small text-muted border-top border-warning'>".$value."</small>";
-                //     // echo date("d");
-                ?>
-            </table>
+                    ?>
+                </table>
+            </div>
         </div>
     </div>
 </body>
