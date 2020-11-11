@@ -34,7 +34,6 @@
         table td {
             text-align: center;
             /* padding: 3px; */
-            border-radius: 50%;
         }
 
         .pic {
@@ -45,7 +44,7 @@
             background-size: cover;
             opacity: 0.8;
             color: #3e62e6;
-            text-shadow: 3px 3px 0px #fff;
+            text-shadow: 3px 3px 3px #fff;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
@@ -63,11 +62,12 @@
             height: 45px;
             color: #6ba6e6;
             font-weight: bold;
+            background: #e8e8e8;
         }
 
         .cr {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -80,20 +80,19 @@
         .cr:hover {
             background: #ffe79be3;
         }
-
-        .animate {
+        .animate:hover {
             animation: arrowA 2s infinite;
             
         }
 
-        .animateB {
+        .animateB:hover {
             animation: arrowB 2s infinite;
             /* animation-fill-mode: forwards; */
         }
 
         @keyframes arrowA {
             50% {
-                transform: translateX(-5%);
+                transform: translateX(-10%);
             }
 
             100% {
@@ -103,7 +102,7 @@
 
         @keyframes arrowB {
             50% {
-                transform: translateX(5%);
+                transform: translateX(10%);
             }
 
             100% {
@@ -112,11 +111,11 @@
         }
 
         .hol {
-            font-size: 5px;
+            font-size: 10px;
             position: absolute;
-            top: 70%;
-            left: 10%;
-            color: #9e9e9e;
+            bottom: 2%;
+            left: 40%;
+            color: #f44336;
         }
     </style>
 </head>
@@ -168,9 +167,9 @@
     // echo "當月第一天是星期幾：" . $startDay . "<br>";
     ?>
 
-    <div class="container d-flex align-items-center justify-content-around">
+    <div class="container d-flex align-items-center justify-content-around my-5">
         <a href="calendar.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate" style="text-decoration: none;"><< Last Month</a> 
-        <div class="box shadow-lg my-5">
+        <div class="box shadow-lg m-3">
                 <div class="pic pl-4">
                     <div style="font-size: 6rem;">
                         <?php
@@ -194,17 +193,29 @@
                         </tr>
                         <?php
                         $holiday = [
-                            '1-1'=>'元旦',
-                            '2-28' => '和平紀念日',
-                            '3-8'=>'婦女節',
-                            '4-1' => '愚人節',
-                            '4-4'=>'兒童節',
-                            '5-15' => '破蛋日',
-                            '9-28' => '教師節',
-                            '10-10' => '雙十節',
-                            '10-30' => '萬聖節',
-                            '11-11' => '光棍節',
-                            '12-25' => '聖誕節'
+                            '1-1'=>'●',
+                            '2-28' => '●',
+                            '3-8'=>'●',
+                            '4-1' => '●',
+                            '4-4'=>'●',
+                            '5-15' => '●',
+                            '8-8'=>'●',
+                            '9-28' => '●',
+                            '10-10' => '●',
+                            '10-30' => '●',
+                            '11-11' => '●',
+                            '12-25' => '●'
+                            // '1-1'=>'元旦',
+                            // '2-28' => '和平紀念日',
+                            // '3-8'=>'婦女節',
+                            // '4-1' => '愚人節',
+                            // '4-4'=>'兒童節',
+                            // '5-15' => '破蛋日',
+                            // '9-28' => '教師節',
+                            // '10-10' => '雙十節',
+                            // '10-30' => '萬聖節',
+                            // '11-11' => '光棍節',
+                            // '12-25' => '聖誕節'
                         ];
 
                         for ($i = 0; $i < 6; $i++) {
@@ -220,18 +231,17 @@
                                 if ($j < $startDay && $i == 0) {
                                     echo  "&nbsp";
                                 } else if ((($i * 7) + ($j + 1) - $startDay) > $monthDay) {
-                                    // echo  "&nbsp";
-                                    break;
+                                    echo  "&nbsp";
                                 } else {
                                     $date = (($i * 7) + ($j + 1) - $startDay);
+                                    echo  $date;
                                 }
-                                echo  $date;
 
                                 if (!empty($holiday[$month . '-' . $date])) {
                                     echo "<div class='hol'>" . $holiday[$month . '-' . $date] . "</div>";
                                 }
                                 if ($date == date("d")) {
-                                echo "<div class='today bg-dark'></div>";  #adbdf9
+                                    echo "<div class='today bg-dark'></div>";  #adbdf9
                                 }
                                 echo "</div>";
                                 echo "</td>";
