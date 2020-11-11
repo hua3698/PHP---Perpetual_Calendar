@@ -18,6 +18,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        body{
+            background-image: url("2021-calendar.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        a:link{
+            text-decoration: none;
+        }
         .box {
             width: 500px;
             margin: auto;
@@ -171,11 +179,11 @@
         <a href="calendar.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate" style="text-decoration: none;"><< Last Month</a> 
         <div class="box shadow-lg m-3">
                 <div class="pic pl-4">
-                    <div style="font-size: 6rem;">
+                    <a href="calendar.php"><div style="font-size: 6rem;">
                         <?php
                         echo date("d");
                         ?>
-                    </div>
+                    </div></a>
                     <div style="font-size: 2.5rem;">
                         <?php echo date("F , Y", strtotime($firstDay)); ?>
                     </div>
@@ -252,7 +260,7 @@
                     </table>
                 </div>
     </div>
-    <a href="calendar.php?y=<?= $nextYear ?>&m=<?= $nextMonth ?>" class="animateB" style="text-decoration: none;">Next Month >></a>
+    <a href="calendar.php?y=<?= $nextYear ?>&m=<?= $nextMonth ?>" class="animateB">Next Month >></a>
     </div>
 </body>
 
