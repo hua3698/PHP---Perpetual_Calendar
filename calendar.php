@@ -122,7 +122,7 @@
             font-size: 10px;
             position: absolute;
             bottom: 2%;
-            left: 40%;
+            left: 45%;
             color: #f44336;
         }
     </style>
