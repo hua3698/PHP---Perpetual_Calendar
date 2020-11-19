@@ -168,10 +168,10 @@
     ?>
 
     <div class="container d-flex align-items-center justify-content-around my-5">
-        <a href="calendar.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate" style="text-decoration: none;"><< Last Month</a> 
+        <a href="index.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate" style="text-decoration: none;"><< Last Month</a> 
         <div class="box shadow-lg m-3">
                 <div class="pic pl-4">
-                    <a href="calendar.php"><div style="font-size: 6rem;">
+                    <a href="index.php"><div style="font-size: 6rem;">
                         <?php
                         echo date("d");
                         ?>
@@ -252,7 +252,7 @@
                     </table>
                 </div>
     </div>
-    <a href="calendar.php?y=<?= $nextYear ?>&m=<?= $nextMonth ?>" class="animateB">Next Month >></a>
+    <a href="index.php?y=<?= $nextYear ?>&m=<?= $nextMonth ?>" class="animateB">Next Month >></a>
     </div>
 </body>
 
