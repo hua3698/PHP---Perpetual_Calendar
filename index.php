@@ -18,6 +18,7 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
         .content {
             width: 80%;
             height: 100%;
@@ -26,24 +27,37 @@
             justify-content: space-around;
             align-items: center;
         }
+
+        .content>a {
+            width: 150px;
+            height: auto;
+            background: aliceblue;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+
         a:link {
             text-decoration: none;
         }
+
         .box {
             width: 500px;
             margin: auto;
             border-radius: 20px;
         }
+
         table {
             width: 500px;
             background: #eee;
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
         }
+
         table td {
             text-align: center;
             /* padding: 3px; */
         }
+
         .pic {
             width: 500px;
             height: 250px;
@@ -56,18 +70,21 @@
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
+
         .weekend {
             color: #f94949;
         }
+
         .today {
-            width:  50px;
-            height:  50px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: #ffe79be3;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .th {
             width: 45px;
             height: 45px;
@@ -75,6 +92,7 @@
             font-weight: bold;
             background: #e8e8e8;
         }
+
         .cr {
             width: 50px;
             height: 50px;
@@ -85,32 +103,40 @@
             transform: translateX(25%);
             user-select: none;
         }
+
         .cr:hover {
             background: #ffe79b8a;
         }
+
         .animate:hover {
             animation: arrowA 2s infinite;
         }
+
         .animateB:hover {
             animation: arrowB 2s infinite;
             /* animation-fill-mode: forwards; */
         }
+
         @keyframes arrowA {
             50% {
                 transform: translateX(-10%);
             }
+
             100% {
                 transform: translateX(0%);
             }
         }
+
         @keyframes arrowB {
             50% {
                 transform: translateX(10%);
             }
+
             100% {
                 transform: translateX(0%);
             }
         }
+
         .hol {
             font-size: 10px;
             position: absolute;
@@ -171,65 +197,65 @@
     ?>
 
     <div class="content">
-        <a href="index.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate" style="text-decoration: none;">
-            << Last Month</a>
-                <div class="box shadow-lg m-3">
-                    <div class="pic pl-4">
-                        <a href="index.php">
-                            <div style="font-size: 6rem;">
-                                <?php
-                                echo date("d");
-                                ?>
-                            </div>
-                        </a>
-                        <div style="font-size: 2.5rem;">
-                            <?php echo date("F , Y", strtotime($firstDay)); ?>
-                        </div>
+        <a href="index.php?y=<?= $lastYear ?>&m=<?= $lastMonth ?>" class="animate">&lt;&lt; Last Month</a>
+        <div class="box shadow-lg m-3">
+            <div class="pic pl-4">
+                <a href="index.php">
+                    <div style="font-size: 6rem;">
+                        <?php
+                        echo date("d");
+                        ?>
                     </div>
-                    <div>
-                        <table>
-                            <tr>
-                                <td class="th">Sun</td>
-                                <td class="th">Mon</td>
-                                <td class="th">Tue</td>
-                                <td class="th">Wed</td>
-                                <td class="th">Thu</td>
-                                <td class="th">Fri</td>
-                                <td class="th">Sat</td>
-                            </tr>
-                            <?php
-                            for ($i = 0; $i < 6; $i++) {
-                                echo "<tr>";
-                                for ($j = 0; $j < 7; $j++) {
-                                    $date = (($i * 7) + ($j + 1) - $startDay);
-                                    echo "<td>";
-                                    echo "<div class='cr'>";
-                                    if ($j == 0 || $j == 6) {
-                                        echo "<div class='weekend'>";
-                                    }
-                                    // $date = "";
-                                    if ($j < $startDay && $i == 0) {
-                                        echo  "&nbsp";
-                                    } else if ((($i * 7) + ($j + 1) - $startDay) > $monthDay) {
-                                        echo  "&nbsp";
-                                    } else if ($date == date("d")) {
-                                        echo "<div class='today'>$date</div>";
-                                    } else {
-                                        echo  $date;
-                                    }
-                                    if (!empty($holiday[$month . '-' . $date])) {
-                                        echo "<div class='hol'>●</div>";
-                                    }
-                                    echo "</div>";
-                                    echo "</td>";
-                                }
-                                echo "</tr>";
-                            }
-                            ?>
-                        </table>
-                    </div>
+                </a>
+                <div style="font-size: 2.5rem;">
+                    <?php echo date("F , Y", strtotime($firstDay)); ?>
                 </div>
-                <a href="index.php?y=<?= $nextYear ?>&m=<?= $nextMonth ?>" class="animateB">Next Month >></a>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td class="th">Sun</td>
+                        <td class="th">Mon</td>
+                        <td class="th">Tue</td>
+                        <td class="th">Wed</td>
+                        <td class="th">Thu</td>
+                        <td class="th">Fri</td>
+                        <td class="th">Sat</td>
+                    </tr>
+                    <?php
+                    for ($i = 0; $i < 6; $i++) {
+                        echo "<tr>";
+                        for ($j = 0; $j < 7; $j++) {
+                            $date = (($i * 7) + ($j + 1) - $startDay);
+                            echo "<td>";
+                            echo "<div class='cr'>";
+                            if ($j == 0 || $j == 6) {
+                                echo "<div class='weekend'>";
+                            }
+                            // $date = "";
+                            if ($j < $startDay && $i == 0) {
+                                echo  "&nbsp";
+                            } else if ((($i * 7) + ($j + 1) - $startDay) > $monthDay) {
+                                echo  "&nbsp";
+                            } else if ($date == date("d")) {
+                                echo "<div class='today'>$date</div>";
+                            } else {
+                                echo  $date;
+                            }
+                            if (!empty($holiday[$month . '-' . $date])) {
+                                echo "<div class='hol'>●</div>";
+                            }
+                            echo "</div>";
+                            echo "</td>";
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
+        <a href="index.php?y=<?= $nextYear ?>&m=<?= $nextMonth ?>" class="animateB">Next Month &gt;&gt;</a>
     </div>
 </body>
+
 </html>
